@@ -1,0 +1,162 @@
+body {
+  background-color: hsl(0, 0%, 94%);
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+}
+
+input{
+  outline: none;
+  width: 70%;
+  max-width: 150px;
+  font-size: 32px;
+  font-weight: 700;
+  padding: 25px 25px;
+  border-radius: 10px;
+  border: 1px solid hsl(0, 0%, 86%);
+  caret-color: hsl(259, 100%, 65%);
+}
+
+input[type=text]:focus {
+  border-color: hsl(259, 100%, 65%);
+}
+
+.container {
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds viewport height */
+}
+
+.container{
+  background-color:  hsl(0, 0%, 100%);
+  width: 90%; 
+  max-width: 840px; 
+  padding: 50px;
+  border-radius: 20px 20px 200px 20px;
+}
+
+.input-header{
+  display: flex;
+  gap: 20px;
+}
+
+.input-container{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.input-container label{
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 2px;
+  color:  hsl(0, 1%, 44%);
+}
+
+.button-container{
+  display: flex;
+  align-items: center;
+}
+
+.button-circle {
+  width: 90px; 
+  height: 80px; 
+  border-radius: 50%; 
+  background-color: hsl(259, 100%, 65%);
+  border: none; 
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizontal-line {
+  width: 100%; /* Make it stretch across the entire width */
+  border-bottom: 2px solid hsl(0, 0%, 86%); /* Black border bottom */
+}
+
+.result-container{
+  color: hsl(0, 0%, 8%);
+  font-size: 90px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.result-container span{
+  color: hsl(259, 100%, 65%);
+}
+
+.error-message {
+  color: hsl(0, 100%, 67%);
+  font-size: 14px;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+.input-container input.error {
+  border-color:  hsl(0, 100%, 67%);
+}
+
+.error-label {
+  color: hsl(0, 100%, 67%) !important;
+}
+
+
+@media screen and (max-width: 600px) {
+  body{
+    padding: 25px;
+  }
+  .container{
+    padding: 50px 30px;
+  }
+
+  .error-message {
+    font-size: 8px;
+  }
+
+  .container{
+    border-radius: 20px 20px 110px 20px;
+  }
+
+  input {
+    width: 70%; /* Set width to 90% of the container width */
+    max-width: 280px; /* Adjust maximum width for smaller screens */
+    padding: 15px; /* Reduce padding for smaller screens */
+    font-size: 20px; /* Adjust font size for smaller screens */
+  }
+
+  .input-container label{
+    font-size: 12px;
+  }
+
+  .result-container{
+    font-size: 55px;
+    margin-top: 45px;
+  }
+  .button-container {
+    position: relative; /* Position container relative to its normal position */
+    flex-direction: column; /* Change to a column layout */
+    align-items: center; /* Center items horizontally */
+    margin-top: 50px;
+  }
+
+  .horizontal-line {
+    width: 100%; /* Adjust the width of the horizontal line */
+    border-bottom: 2px solid hsl(0, 0%, 86%); /* Ensure line is visible */
+    margin-bottom: 10px; /* Add some spacing between the line and the button */
+  }
+
+  .button-circle {
+    position: absolute; /* Position button absolutely */
+    top: -30px; /* Adjust button's top position to be on top of the line */
+    width: 60px; /* Adjust button width */
+    height: 60px; /* Adjust button height */
+  }
+
+  .button-circle img{
+    width: 35px;
+  }
+}

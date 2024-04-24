@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+    <title>Frontend Mentor | Age calculator app</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet">
+    <style>
+      .attribution {
+        font-size: 14px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+      }
+
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <section class="input-header">
+        <div class="input-container">
+          <label for="day" id="day-label">DAY</label>
+          <input type="text" id="day" placeholder="DD">
+          <div id="day-error" class="error-message"></div>
+        </div>
+        <div class="input-container">
+          <label for="month" id="month-label">MONTH</label>
+          <input type="text" id="month" placeholder="MM">
+          <div id="month-error" class="error-message"></div>
+        </div>
+        <div class="input-container">
+          <label for="year" id="year-label">YEAR</label>
+          <input type="text" id="year" placeholder="YYYY">
+          <div id="year-error" class="error-message"></div>
+        </div>
+      </section>
+      <section class="button-container">
+        <div class="horizontal-line"></div>
+        <button class="button-circle" onclick="calculateAge()"><img src="./assets/images/icon-arrow.svg"
+            alt=""></button>
+
+      </section>
+      <section class="result-container">
+        <div>
+          <span id="years">--</span> years
+        </div>
+        <div>
+          <span id="months">--</span> months
+        </div>
+        <div>
+          <span id="days">--</span> days
+        </div>
+      </section>
+    </div>
+
+    <script>
+      function calculateAge () {
+        var day = document.getElementById('day').value.trim();
+        var month = document.getElementById('month').value.trim();
+        var year = document.getElementById('year').value.trim();
+
+        var today = new Date();
+        var birthDate = new Date(year, month - 1, day);
+
+        var isValid = true;
+
+        if (!day)
+        {
+          document.getElementById('day').classList.add('error');
+          document.getElementById('day-label').classList.add('error-label');
+          document.getElementById('day-error').textContent = "This field is required";
+
+          isValid = false;
+        } else if (isNaN(day) || day < 1 || day > 31)
+        {
+          document.getElementById('day').classList.add('error');
+          document.getElementById('day-error').textContent = "Must be a valid day";
+          document.getElementById('day-label').classList.add('error-label');
+          isValid = false;
+        } else
+        {
+          document.getElementById('day').classList.remove('error');
+          document.getElementById('day-label').classList.remove('error-label');
+          document.getElementById('day-error').textContent = "";
+        }
+
+        if (!month)
+        {
+          document.getElementById('month').classList.add('error');
+          document.getElementById('month-label').classList.add('error-label');
+          document.getElementById('month-error').textContent = "This field is required";
+          isValid = false;
+        } else if (isNaN(month) || month < 1 || month > 12)
+        {
+          document.getElementById('month').classList.add('error');
+          document.getElementById('month-label').classList.add('error-label');
+          document.getElementById('month-error').textContent = "Must be a valid month";
+          isValid = false;
+        } else
+        {
+          document.getElementById('month').classList.remove('error');
+          document.getElementById('month-label').classList.remove('error-label');
+          document.getElementById('month-error').textContent = "";
+        }
+
+        if (!year)
+        {
+          document.getElementById('year').classList.add('error');
+          document.getElementById('year-label').classList.add('error-label');
+          document.getElementById('year-error').textContent = "This field is required";
+          isValid = false;
+        } else if (isNaN(year) || year < 1900 || year > today.getFullYear())
+        {
+          document.getElementById('year').classList.add('error');
+          document.getElementById('year-label').classList.add('error-label');
+          document.getElementById('year-error').textContent = "Must be a valid year";
+          isValid = false;
+        } else
+        {
+          document.getElementById('year').classList.remove('error');
+          document.getElementById('year-label').classList.remove('error-label');
+          document.getElementById('year-error').textContent = "";
+        }
+
+        if (isValid)
+        {
+          var ageInMilliseconds = today - birthDate;
+
+          var years = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365.25));
+          var months = Math.floor((ageInMilliseconds % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+          var days = Math.floor((ageInMilliseconds % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+
+          document.getElementById('years').textContent = years;
+          document.getElementById('months').textContent = months;
+          document.getElementById('days').textContent = days;
+        } else
+        {
+          document.getElementById('years').textContent = "--";
+          document.getElementById('months').textContent = "--";
+          document.getElementById('days').textContent = "--";
+        }
+      }
+    </script>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+      Coded by <a href="https://www.linkedin.com/in/bahubali-hattiholi/" target="_blank">Bahubali Y H</a>.
+    </div>
+  </body>
+
+</html>
